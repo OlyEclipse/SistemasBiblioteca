@@ -1,4 +1,24 @@
 #include <stdio.h>
+
+typedef struct usuario{
+    char login[100];
+    char senha[100];
+}usuario[200];
+
+typedef struct livro{
+    char nomeLivro[100];
+    char nomeAutor[100];
+    char tema[100];
+    int isbn;
+    float avaliacao;
+}livro[1000];
+
+typedef struct adm{
+    char login[100];
+    char senha[100];
+}adm[50];
+
+//---FUNCOES
 void cadastrar();
 void entrar();
 int main(){
@@ -27,5 +47,5 @@ void cadastrar(){
     printf(":)");
 }
 void entrar(){
-    printf(":()");
+    printf(":)");
 }
