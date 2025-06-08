@@ -33,7 +33,7 @@ int verifCad(char loginTeste[100]);
 int verifLogin(char loginTeste[100]);
 int verifSenha(char senhaTeste[100],int indiceLogin);
 void menuUser();
-void menuAdm();
+int menuAdm();
 int main(){
     strcpy(adm.login, "adm");
     strcpy(adm.senha, "senhaadm");
@@ -94,8 +94,25 @@ int verifSenha(char senhaTeste[100],int indiceLogin){
 void menuUser(){
     printf("");
 }
-void menuAdm(){
-    printf("");
+int menuAdm(){
+    int op;
+    do{
+        printf("-----------------------------------------MENU-------------------------------------------\n");
+        printf("1-Cadastrar Livro\n2-Excluir Livro\n3-Sair\n");
+        printf("----------------------------------------------------------------------------------------\n");
+        scanf("%d",&op);
+        switch(op){
+            case 1:
+            break;
+            case 2:
+            break;
+            case 3:
+            return 0;
+            break;
+            default:
+            break;
+        }
+    }while(op!=3);
 }
 //-------------------------
 void cadastrar(){
