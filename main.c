@@ -37,6 +37,7 @@ void verifLivro();
 void removerLivro();
 void menuUser();
 void menuAdm();
+void limpar_buffer();
 int main(){
     strcpy(adm.login, "adm");
     strcpy(adm.senha, "senhaadm");
@@ -123,14 +124,24 @@ void menuAdm(){
 
 }
 
+void limpar_buffer() {
+    // Primeiro descarta todos os caracteres até encontrar uma quebra de linha
+    scanf("%*[^\n]");
+    // Depois descarta a própria quebra de linha
+    scanf("%*c");
+}
+
 void cadastrarlivro(){ //cadastro dos livros
     printf("-----------------------------------------CADASTRO LIVRO-------------------------------------------\n");
     printf ("Nome do livro: ");
     scanf (" %s", livro[quantLivro].nomeLivro);
+    limpar_buffer();
     printf ("Nome do autor: ");
     scanf (" %s", livro[quantLivro].nomeAutor);
+    limpar_buffer();
     printf ("Tema do livro: ");
     scanf (" %s", livro[quantLivro].tema);
+    limpar_buffer();
     printf ("ISBN do livro: ");
     scanf (" %i", &livro[quantLivro].isbn);
 
@@ -139,6 +150,7 @@ void cadastrarlivro(){ //cadastro dos livros
 }
 
 void verifLivro (){ //lista de livros apos serem cadastrados 
+    char op;
     printf ("-----------------------------------------LISTA DE LIVROS-------------------------------------------\n");
     for(int i = 0; i < quantLivro; i++) {
         printf("Livro %i:\n", i+1);
@@ -146,7 +158,11 @@ void verifLivro (){ //lista de livros apos serem cadastrados
         printf("Autor do livro: %s\n", livro[i].nomeAutor);
         printf("Tema do livro: %s\n", livro[i].tema);
         printf("ISBN: %d\n", livro[i].isbn);
+        printf("---------------------------------\n");
     }
+    printf("Digite ENTER para voltar ao menu");
+    scanf("%c",&op);
+    limpar_buffer();
 }
 
 void removerLivro (){ //admin pode remover algum livro
