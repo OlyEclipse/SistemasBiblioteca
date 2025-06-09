@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 int quantU = 0;
 int quantLivro = 0;
@@ -16,6 +17,7 @@ typedef struct{
     char nomeAutor[100];
     char tema[100];
     int isbn;
+    bool foiPego;
     float avaliacao;
 }Livros;
 Livros livro[100];
@@ -38,6 +40,12 @@ void removerLivro();
 void menuUser();
 void menuAdm();
 void limpar_buffer();
+void pegar_livros();
+void listarLivros();
+void verif_Livro_Existe();
+void verif_Livro_Pego();
+void pegarLivro();  
+
 int main(){
     strcpy(adm.login, "adm");
     strcpy(adm.senha, "senhaadm");
@@ -93,11 +101,46 @@ int verifSenha(char senhaTeste[100],int indiceLogin){
     }
     return 1;
 }
-//-------------------------
+//---------------------------------
 //MENUS USUARIO--------------------
 void menuUser(){
+
+    int opc_user;
+    printf("-------------------MENU-USUARIO-------------------------");
+    printf("1-Listar livros\n 2-Verificar se o livro ja existe\n 3-Verificar se o livro ja foi pego\n 4-Renovar data \n 5-Pegar livro \n 6-Sair");
+    scanf("%d",&opc_user);
+    switch (opc_user){
+    case 1:
+        listarLivros();
+        break;
+    case 2:
+        verif_Livro_Existe();
+        break;
+    case 3:
+        verif_Livro_Pego();
+        break;
+    case 4:
+        renovaData();
+        break; 
+    case 5:
+        pegarLivro();
+        break;
+    case 6:
+        break;       
+    default:
+        break;
+    }
 } 
-// MENU ADMIN
+void listarLivros(){
+}
+void verif_Livro_Existe(){
+}    
+void verif_Livro_Pego(){    
+}
+void pegarLivro(){
+    
+}
+//MENU ADMIN
 void menuAdm(){
     int op;
     do{
@@ -129,6 +172,24 @@ void limpar_buffer() {
     scanf("%*[^\n]");
     // Depois descarta a própria quebra de linha
     scanf("%*c");
+}
+
+void pegar_livros(){
+    char livro[100];
+    limpar_buffer();
+    printf("Listar livros")
+    switch (livro) {
+        case :
+        /* code */
+        break;
+        
+        default:
+        break;
+    }
+    printf("Qual livro deseja pegar? ");
+    scanf(" %s",livro);
+    
+
 }
 
 void cadastrarlivro(){ //cadastro dos livros
