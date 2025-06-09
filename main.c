@@ -32,6 +32,9 @@ void entrar();
 int verifCad(char loginTeste[100]);
 int verifLogin(char loginTeste[100]);
 int verifSenha(char senhaTeste[100],int indiceLogin);
+void cadastrarlivro ();
+void verifLivro();
+void removerLivro();
 void menuUser();
 void menuAdm();
 int main(){
@@ -90,13 +93,84 @@ int verifSenha(char senhaTeste[100],int indiceLogin){
     return 1;
 }
 //-------------------------
-//MENUS--------------------
+//MENUS USUARIO--------------------
 void menuUser(){
-    printf("");
-}
+} 
+// MENU ADMIN
 void menuAdm(){
-    printf("");
+    int op;
+    do{
+        printf("-----------------------------------------MENU ADM-------------------------------------------\n");
+        printf("1-Cadastrar Livro\n2-Verificar livros\n3-Excluir Livro\n4-Sair\n");
+        printf("----------------------------------------------------------------------------------------\n");
+        scanf ("%i", &op);
+        switch (op){
+            case 1:
+                cadastrarlivro();
+            break;
+            case 2:
+                verifLivro ();
+            break;
+            case 3:
+                removerLivro ();
+            break;
+            case 4:
+            break;
+            default:
+            break;    
+        }
+    } while (op != 4);
+
 }
+
+void cadastrarlivro(){ //cadastro dos livros
+    printf("-----------------------------------------CADASTRO LIVRO-------------------------------------------\n");
+    printf ("Nome do livro: ");
+    scanf (" %s", livro[quantLivro].nomeLivro);
+    printf ("Nome do autor: ");
+    scanf (" %s", livro[quantLivro].nomeAutor);
+    printf ("Tema do livro: ");
+    scanf (" %s", livro[quantLivro].tema);
+    printf ("ISBN do livro: ");
+    scanf (" %i", &livro[quantLivro].isbn);
+
+    quantLivro ++;
+    printf ("Livro %i cadastrado com sucesso!\n", quantLivro);
+}
+
+void verifLivro (){ //lista de livros apos serem cadastrados 
+    printf ("-----------------------------------------LISTA DE LIVROS-------------------------------------------\n");
+    for(int i = 0; i < quantLivro; i++) {
+        printf("Livro %i:\n", i+1);
+        printf("Titulo do livro: %s\n", livro[i].nomeLivro);
+        printf("Autor do livro: %s\n", livro[i].nomeAutor);
+        printf("Tema do livro: %s\n", livro[i].tema);
+        printf("ISBN: %d\n", livro[i].isbn);
+    }
+}
+
+void removerLivro (){ //admin pode remover algum livro
+    int isbn, i, j, exist = 0; //assume que o isbn nao existe ate provar o contrario
+    printf ("Digite o ISBN do livro que deseja remover: ");
+    scanf ("%i", &isbn);
+        
+    for(i = 0; i < quantLivro; i++) {
+        if(livro[i].isbn == isbn) {
+            exist = 1;
+            for(j = i; j < quantLivro - 1; j++) {
+                livro[j] = livro[j+1];
+            }
+            quantLivro--;
+            printf("Livro removido com sucesso!\n");
+            break;
+        }
+    }
+    
+    if(!exist) {
+        printf("Livro com ISBN %i nao encontrado.\n", isbn);
+    }
+}
+
 //-------------------------
 void cadastrar(){
     char loginTeste[100];
@@ -145,4 +219,5 @@ void entrar(){
         }while(strcmp(senhaTeste,adm.senha)!=0);
         menuAdm();
     }
+
 }
